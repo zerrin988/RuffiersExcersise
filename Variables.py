@@ -26,3 +26,4 @@ button3 = ""
 button4 = ""
 
 testforcommit = 0
+testforcommit = 1
