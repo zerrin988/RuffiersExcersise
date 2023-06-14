@@ -10,6 +10,7 @@ class MainWin(QWidget):
         self.UI()
         self.connect()
         self.show()
+        
     def set_appear(self): 
         self.setWindowTitle(textMain)
         self.resize(winW, winH)
