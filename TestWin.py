@@ -2,7 +2,6 @@ from PyQt5.QtCore import Qt, QTimer, QTime
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QLabel, QVBoxLayout, QHBoxLayout, QLineEdit
 from Variables import *
 
-#this class is the testWindow class
 class TestWin(QWidget):
     def __init__(self):
         super().__init__()
@@ -17,7 +16,9 @@ class TestWin(QWidget):
         self.move(winX, winY)
 
     def UI(self):
-        self.line = QHBoxLayout()
+        self.lineh = QHBoxLayout()
+        self.liner = QVBoxLayout()
+        self.linel = QVBoxLayout()
 
         self.desc1 = QLineEdit(fullName)
         self.desc2 = QLineEdit(fullYears)
@@ -37,12 +38,32 @@ class TestWin(QWidget):
         self.b3 = QPushButton(button3)
         self.b4 = QPushButton(button4)
 
-        self.layoutUI.addWidget(self.textMainUI)
-        self.layoutUI.addWidget(self.instructionUI)
-        self.layoutUI.addWidget(self.buttonUI)
-        self.setLayout(self.layoutUI)
+        self.linel.addWidget(self.t1)
+        self.linel.addWidget(self.desc1)
 
+        self.linel.addWidget(self.t2)
+        self.linel.addWidget(self.desc2)
 
+        self.linel.addWidget(self.t3)
+        self.linel.addWidget(self.b1)
+        self.linel.addWidget(self.desc3)
+
+        self.linel.addWidget(self.t4)
+        self.linel.addWidget(self.b2)
+
+        self.linel.addWidget(self.t5)
+        self.linel.addWidget(self.b3)
+        self.linel.addWidget(self.desc4)
+        self.linel.addWidget(self.desc5)
+        
+        self.linel.addWidget(self.b4)
+
+        self.liner.addWidget(self.tTimer)
+
+        self.lineh.addLayout(self.linel)
+        self.lineh.addLayout(self.liner)
+
+        self.setLayout(self.lineh)
 
     def timeTest(self):
         global time
@@ -54,7 +75,7 @@ class TestWin(QWidget):
     def time1event(self):
         global time
         time = time.addSecs(-1)
-        self.timeTest.setText(time.toString("hh:mm:ss"))
+        self.tTimer.setText(time.toString("hh:mm:ss"))
 
         if time.toString("hh:mm:ss") == "00:00:00":
             self.timer.stop()
@@ -62,40 +83,45 @@ class TestWin(QWidget):
     def timeSits(self):
         global time
         time = QTime(0, 0, 30)
+        self.timer = QTimer()
         self.timer.timeout.connect(self.time2event)
         self.timer.start(1500)
 
     def time2event(self):
-        self.timeTest.setText(time.toString("hh:mm:ss")[6:8])
+        global time
+        self.tTimer.setText(time.toString("hh:mm:ss")[6:8])
+        time = time.addSecs(-1)
 
-        if int(time.toString("hh:mm:ss")[6:8]) == "00":
+        if time.toString("hh:mm:ss") == "00:00:00":
                 self.timer.stop()
 
     def finalTimer(self):
         global time
         time = QTime(0, 1, 0)
+        self.timer = QTimer()
         self.timer.timeout.connect(self.time3event)
         self.timer.start(1000)
 
     def time3event(self):
-        self.timeTest.setText(time.toString("hh:mm:ss")[6:8])
+        global time
+        self.tTimer.setText(time.toString("hh:mm:ss"))
+        time = time.addSecs(-1)
 
-        if int(time.toString("hh:mm:ss")[6:8]) >= 45:
-            self.timer.setStyleSheet("rgb = [0, 255, 0]")
-        elif int(time.toString("hh:mm:ss")[6:8]) <= 15:
-            self.timer.setStyleSheet("rgb = [255, 0, 0]")
+        if time.toString("hh:mm:ss") >= "00:00:45":
+            self.tTimer.setStyleSheet("color: rgb(0, 255, 0)")
+        elif time.toString("hh:mm:ss") <= "00:00:15":
+            self.tTimer.setStyleSheet("color: rgb(255, 0, 0)")
         else:
-            self.timer.setStyleSheet("rgb = [0, 0, 0]")
+            self.tTimer.setStyleSheet("color: rgb(0, 0, 0)")
 
-        if int(time.toString("hh:mm:ss")[6:8]) == "00":
+        if time.toString("hh:mm:ss") == "00:00:00":
             self.timer.stop()
 
     def connect(self):
-        self.buttonUI.clicked.connect(self.nextClick)
-        
-        self.b2.click.connect(self.timeTest)
-        self.b3.click.connect(self.timeSits)
-        self.b4.click.connect(self.finalTimer)
+        self.b1.clicked.connect(self.timeTest)
+        self.b2.clicked.connect(self.timeSits)
+        self.b3.clicked.connect(self.finalTimer)
+        self.b4.clicked.connect(self.nextClick)
 
     def nextClick(self):
         self.hide()

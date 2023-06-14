@@ -10,7 +10,7 @@ class MainWin(QWidget):
         self.UI()
         self.connect()
         self.show()
-        
+
     def set_appear(self): 
         self.setWindowTitle(textMain)
         self.resize(winW, winH)
@@ -23,7 +23,6 @@ class MainWin(QWidget):
 
         self.layoutUI = QVBoxLayout()
 
-        self.layoutUI.addWidget(self.textMainUI)
         self.layoutUI.addWidget(self.instructionUI)
         self.layoutUI.addWidget(self.buttonUI)
         self.setLayout(self.layoutUI)
