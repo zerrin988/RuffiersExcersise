@@ -1,14 +1,15 @@
 from PyQt5.QtCore import Qt, QTimer, QTime
-from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QLabel, QVBoxLayout, QHBoxLayout, QLineEdit
+from PyQt5.QtWidgets import QWidget, QPushButton, QLabel, QVBoxLayout, QHBoxLayout, QLineEdit
 from FinalWin import *
 from Variables import *
 
 class testresult():
-    def __init__(self, ageo, t1o, t2o, t3o):
-        self.age = ageo
-        self.t1 = t1o
-        self.t2 = t2o
-        self.t3 = t3o
+    def __init__(self, age, t1, t2, t3):
+        self.age = age
+        self.t1 = t1
+        self.t2 = t2
+        self.t3 = t3
+        self.index = (4 * (int(self.t1) + int(self.t2) + int(self.t3)) - 200) / 10
 
 class TestWin(QWidget):
     def __init__(self):
@@ -125,9 +126,6 @@ class TestWin(QWidget):
         if time.toString("hh:mm:ss") == "00:00:00":
             self.timer.stop()
 
-    def results(self):
-        self.index = (4 * (int(self.ti.t1) + int(self.ti.t2) + int(self.ti.t3)) - 200) / 10
-
     def connect(self):
         self.b1.clicked.connect(self.timeTest)
         self.b2.clicked.connect(self.timeSits)
@@ -137,4 +135,4 @@ class TestWin(QWidget):
     def nextClick(self):
         self.hide()
         self.ti = testresult(self.desc2.text(), self.desc3.text(), self.desc4.text(), self.desc5.text())
-        self.tw = FinalWin(self.ti)
+        self.tw = FinalWin(self.ti, self.ti.index)
