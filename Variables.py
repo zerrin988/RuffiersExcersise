@@ -1,5 +1,7 @@
 textMain = "Introduction"
 textTw = "Perform Test"
+textFw = "Results"
+
 textInstruction = '''
     Welcome to the Health status detection program!
 

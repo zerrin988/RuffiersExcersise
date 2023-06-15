@@ -1,5 +1,6 @@
 from PyQt5.QtCore import Qt, QTimer, QTime
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QLabel, QVBoxLayout, QHBoxLayout, QLineEdit
+from FinalWin import *
 from Variables import *
 
 class TestWin(QWidget):
@@ -8,7 +9,6 @@ class TestWin(QWidget):
         self.set_appear()
         self.UI()
         self.connect()
-        self.show()
     
     def set_appear(self):
         self.setWindowTitle(textTw)
@@ -125,4 +125,4 @@ class TestWin(QWidget):
 
     def nextClick(self):
         self.hide()
-        self.tw = TestWin()
+        self.tw = FinalWin()

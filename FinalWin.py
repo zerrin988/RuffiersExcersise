@@ -8,9 +8,14 @@ class FinalWin(QWidget):
         self.set_appear()
         self.UI()
         self.connect()
-        self.show()
     
     def set_appear(self):
         self.setWindowTitle(textFw)
         self.resize(winW, winH)
         self.move(winX, winY)
+
+    def UI():
+        pass
+
+    def connect():
+        pass
