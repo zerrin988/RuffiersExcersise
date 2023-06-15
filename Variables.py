@@ -5,7 +5,7 @@ textFw = "Results"
 textInstruction = '''
     Welcome to the Health status detection program!
 
-    This app allows you to use hte Rufier test to make an initial diagnosis of your health.
+    This app allows you to use the Rufier test to make an initial diagnosis of your health.
     The Rufier test is a set of physical exercises designed to assess your cardiac performance during aphysical exertion.
     The subject lies in the supine position for 5 minutes and has their pulserate measured for 15 seconds;
     then, within 45 seconds, the subject performs 30 squats.
@@ -44,3 +44,11 @@ button1 = "Start the First test:"
 button2 = "Start doing squats:"
 button3 = "Start the Final tests:"
 button4 = "Send the results"
+
+txt_index = 'Roufier Index: '
+txt_workheart = 'Cardiac performance: '
+txt_res1 = "low. See your doctor right away!"
+txt_res2 = "satisfactory. See your doctor!"
+txt_res3 = "average. It may be worth seeing your doctor to get checked out."
+txt_res4 = "above average"
+txt_res5 = "high"

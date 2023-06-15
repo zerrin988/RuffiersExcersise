@@ -3,19 +3,15 @@ from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QLabel, QVBoxLay
 from Variables import *
 
 class FinalWin(QWidget):
-    def __init__(self):
+    def __init__(self, ti):
         super().__init__()
-        self.set_appear()
-        self.UI()
-        self.connect()
+        self.ti = ti
+        self.show()
     
     def set_appear(self):
         self.setWindowTitle(textFw)
         self.resize(winW, winH)
         self.move(winX, winY)
 
-    def UI():
-        pass
-
-    def connect():
+    def results():
         pass
