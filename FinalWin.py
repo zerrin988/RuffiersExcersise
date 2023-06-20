@@ -45,20 +45,19 @@ age_ranges = {
     },
 }
 
-class ResultChecker():
-    def __init__(self, index, age_ranges):
+class ResultChecker:
+    def __init__(self, age_ranges):
         self.age_ranges = age_ranges
-        self.index = index
 
-    def resultChecker(self, result, age):
-        if age in self.age_ranges:
-            result_ranges = self.age_ranges[age]
+    def resultChecker(self, age, result):
+        for age_range, result_ranges in self.age_ranges.items():
+            if float(age_range[0]) <= age <= float(age_range[1]):
+                for result_range, action in result_ranges.items():
+                    if float(result_range[0]) <= float(result) <= float(result_range[1]):
+                        return action
 
-            for result_range, action in result_ranges.items():
-                if result_range[0] <= result <= result_range[1]:
-                    return action
+        return "."
 
-        return "No action found"
 
 class FinalWin(QWidget):
     def __init__(self, ti, result):
@@ -67,7 +66,7 @@ class FinalWin(QWidget):
         self.UI()
         self.result = result
         self.show()
-    
+
     def set_appear(self):
         self.setWindowTitle(textFw)
         self.resize(winW, winH)
@@ -85,6 +84,6 @@ class FinalWin(QWidget):
         self.setLayout(self.line)
 
     def results(self):
-        checker = ResultChecker(self.ti.index, age_ranges)
+        checker = ResultChecker(age_ranges)
         self.result = checker.resultChecker(self.ti.index, self.ti.age)
         return self.result
