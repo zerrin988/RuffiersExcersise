@@ -58,6 +58,8 @@ class ResultChecker():
                 if result_range[0] <= result <= result_range[1]:
                     return action
 
+        return "No action found"
+
 class FinalWin(QWidget):
     def __init__(self, ti, result):
         super().__init__()
@@ -83,6 +85,6 @@ class FinalWin(QWidget):
         self.setLayout(self.line)
 
     def results(self):
-        checker = ResultChecker(age_ranges)
+        checker = ResultChecker(self.ti.index, age_ranges)
         self.result = checker.resultChecker(self.ti.index, self.ti.age)
         return self.result
